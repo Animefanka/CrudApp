@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Getting Started: Serving Web Content</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Adress Email</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td>  <a th:href="@{/delete/{id}(id=${user.id})}">Delete</a> </td>
+               </tr>
+            </tbody>
+        </table>
+        <br/>
+        Create new user:
+        <form th:action="@{/add}">
+            <div><label> Name: <input type="text" name="name"/> </label></div>
+            <div><label> Email: <input type="text" name="email"/> </label></div>
+            <div><input type="submit" value="Add"/></div>
+        </form>
+        <br/><br />
+        Update user Name and Email:
+        <form th:action="@{/update}">
+            <div><label> ID: <input type="text" name="id"/> </label></div>
+            <div><label> Name: <input type="text" name="name"/> </label></div>
+            <div><label> Email: <input type="text" name="email"/> </label></div>
+            <div><input type="submit" value="Update"/></div>
+        </form>
+    </body>
+
+
+</html>
